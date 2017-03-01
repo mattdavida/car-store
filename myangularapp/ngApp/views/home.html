@@ -1,0 +1,18 @@
+<div class="text-right">
+  <form name="myForm">
+    <label for="repeatSelect"> Select your make from the list: </label>
+    <select name="repeatSelect" id="repeatSelect" ng-model="searchText">
+      <option ng-repeat="makes in controller.makes | filter:main.searchInput | orderBy:main.order.key:main.order.reverse" value="{{makes.name}}">{{makes.name}}</option>
+      <option value="">All makes</option>
+    </select>
+  </form>
+  <hr />
+  <input type="text" class=" input-group form-control" ng-model="searchText" ng-model-options="{debounce:1000}"  placeholder="Can I help you find something?" />
+</div>
+
+<div class="row">
+  <div class="col-sm-4 cursor" ng-repeat="car in controller.search | filter: searchText">
+    <h2><a ng-click="controller.showModal(car)">{{car.ShortDescription}}</a></h2>
+    <p><img height="200" width="300" ng-src="{{car.ImageUrl}}"/></p>
+  </div>
+</div>
